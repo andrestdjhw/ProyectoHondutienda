@@ -1,7 +1,7 @@
 header {
     @apply relative
     md:flex md:items-center md:justify-between
-    bg-cyan-400 text-white;
+    bg-gradient-to-r from-cyan-300 to-cyan-600 text-white;
 }
 header div {
     @apply ml-10 md:ml-0;
@@ -12,7 +12,7 @@ header h1 {
     ;
 }
 header nav {
-    @apply absolute top-full left-0 w-full min-h-0 h-0 overflow-hidden bg-cyan-400
+    @apply absolute top-full left-0 w-full min-h-0 h-0 overflow-hidden 
     md:relative md:w-auto md:min-h-auto md:h-auto md:overflow-visible
     ;
     transition: min-height 0.3s ease-in-out;
