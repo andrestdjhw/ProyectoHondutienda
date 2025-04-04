@@ -1,4 +1,7 @@
 import React from "react";
+import { FaSquareFacebook } from "react-icons/fa6";
+import { FaSquareTwitter } from "react-icons/fa6";
+import {FaSquareInstagram} from "react-icons/fa6";
 
 export const Footer = () => {
     return (
@@ -40,12 +43,12 @@ export const Footer = () => {
                 </div>
                 <div>
                     <h2 className="footer-title">
-                        Follow Us!
+                        ¡Siquenos en nuestras redes!
                     </h2>
                     <ul className="flex space-x-4">
-                        <li><a href="#" className="footer-link">Facebook</a></li>
-                        <li><a href="#" className="footer-link">Twitter</a></li>
-                        <li><a href="#" className="footer-link">Instagram</a></li>
+                        <li><FaSquareFacebook className="footer-social-icon"/><a href="#" className="footer-social-link">Facebook</a></li>
+                        <li><FaSquareTwitter className="footer-social-icon"/><a href="#" className="footer-social-link">Twitter</a></li>
+                        <li><FaSquareInstagram className="footer-social-icon" /><a href="#" className="footer-social-link">Instagram</a></li>
                     </ul>
                 </div>
             </div>

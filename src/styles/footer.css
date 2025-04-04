@@ -25,6 +25,17 @@
         text-gray-300;
 }
 
+.footer-social-icon{
+    @apply text-white
+        mt-6;
+}
+
+.footer-social-link{
+    @apply hover:underline 
+        text-gray-300
+        mt-4;
+}
+
 .footer-copyright{
     @apply border-t 
         border-gray-600 
