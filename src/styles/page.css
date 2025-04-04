@@ -18,8 +18,8 @@ header nav {
     transition: min-height 0.3s ease-in-out;
 }
 header nav.open {
-    @apply absolute top-full left-0 w-full min-h-screen h-auto overflow-hidden
-    md:relative md:w-auto md:min-h-auto md:h-auto md:overflow-visible
+    @apply absolute top-full left-0 w-full min-h-screen h-auto overflow-hidden bg-gradient-to-r from-cyan-300 to-cyan-600 text-white
+    md:relative md:w-auto md:min-h-auto md:h-auto md:overflow-visible z-40
     ;
 }
 header nav ul {
