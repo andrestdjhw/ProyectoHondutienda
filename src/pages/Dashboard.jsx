@@ -8,7 +8,7 @@ import FilterPanel from "../components/FilterPanel";
 
 export const DashBoard = () => {
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(20);
+    const [limit, setLimit] = useState(10);
     const navigate = useNavigate();
 
     const { pokemonData, isLoading } = useGetPokemons(page - 1, limit);

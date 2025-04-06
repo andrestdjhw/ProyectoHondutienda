@@ -1,4 +1,3 @@
-// src/components/FilterPanel.jsx
 import { useState } from "react";
 
 const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
@@ -9,11 +8,11 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
             planta: false,
             electrico: false,
             veneno: false,
-            volador: false
+            volador: false,
         },
         priceRange: [0, 100],
         category: "",
-        availability: "all"
+        availability: "all",
     });
 
     const toggleTypeFilter = (type) => {
@@ -21,8 +20,8 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
             ...filters,
             types: {
                 ...filters.types,
-                [type]: !filters.types[type]
-            }
+                [type]: !filters.types[type],
+            },
         });
     };
 
@@ -41,22 +40,24 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
     };
 
     return (
-        <aside className="bg-white p-6 rounded-2xl shadow-xl border border-gray-200 w-80">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-gray-100">Filtros</h2>
+        <aside className="bg-white p-5 rounded-2xl shadow-xl border border-gray-200 w-80 h-fit sticky top-4">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2 border-gray-100">
+                Filtros
+            </h2>
             
-            {/* Filtro por Tipo */}
-            <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+            {/* Filtro por Tipo (más compacto) */}
+            <div className="mb-4">
+                <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
                     Tipo
                 </h3>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2">
                     {Object.keys(filters.types).map((type) => (
                         <label 
                             key={type} 
-                            className={`flex items-center gap-2 p-2 rounded-lg transition-all duration-200 cursor-pointer 
+                            className={`flex items-center gap-2 p-1.5 rounded-md transition-all duration-200 cursor-pointer 
                                 ${filters.types[type] ? 'bg-blue-50 border border-blue-200' : 'hover:bg-gray-50'}`}
                         >
                             <input 
@@ -65,21 +66,21 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                                 checked={filters.types[type]} 
                                 onChange={() => toggleTypeFilter(type)} 
                             />
-                            <span className="capitalize text-gray-700">{type}</span>
+                            <span className="capitalize text-gray-700 text-sm">{type}</span>
                         </label>
                     ))}
                 </div>
             </div>
 
-            {/* Filtro por Rango de Precio */}
-            <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+            {/* Filtro por Precio (margen reducido) */}
+            <div className="mb-4">
+                <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Rango de Precio
                 </h3>
-                <div className="px-2">
+                <div className="px-1">
                     <input
                         type="range"
                         min="0"
@@ -94,18 +95,18 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                         max="100"
                         value={filters.priceRange[1]}
                         onChange={(e) => handlePriceChange(e, 1)}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-4"
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-3"
                     />
-                    <div className="flex justify-between mt-2 text-sm text-gray-600">
+                    <div className="flex justify-between mt-1 text-sm text-gray-600">
                         <span>${filters.priceRange[0]}</span>
                         <span>${filters.priceRange[1]}</span>
                     </div>
                 </div>
             </div>
 
-            {/* Filtro por Categoría */}
-            <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+            {/* Filtro por Categoría (más pequeño) */}
+            <div className="mb-4">
+                <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </svg>
@@ -114,7 +115,7 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 <select
                     value={filters.category}
                     onChange={handleCategoryChange}
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-1.5 text-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 >
                     <option value="">Todas las categorías</option>
                     <option value="pokebasicos">Pokémon Básicos</option>
@@ -124,17 +125,17 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 </select>
             </div>
 
-            {/* Filtro por Disponibilidad */}
-            <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+            {/* Filtro por Disponibilidad (más compacto) */}
+            <div className="mb-4">
+                <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     Disponibilidad
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-1">
                     {['all', 'available', 'out-of-stock'].map((option) => (
-                        <label key={option} className="flex items-center gap-2 text-gray-700">
+                        <label key={option} className="flex items-center gap-2 text-gray-700 text-sm">
                             <input
                                 type="radio"
                                 name="availability"
@@ -153,24 +154,24 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 </div>
             </div>
 
-            {/* Botones de Acción */}
-            <div className="flex flex-col gap-3">
+            {/* Botones de Acción (margen reducido) */}
+            <div className="flex flex-col gap-2">
                 <button
                     className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-all duration-300 
-                              flex items-center justify-center gap-2 font-medium shadow-md hover:shadow-lg"
+                              flex items-center justify-center gap-2 font-medium text-sm shadow-md hover:shadow-lg"
                     onClick={() => onApplyFilters(filters)}
                 >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                     </svg>
                     Aplicar Filtros
                 </button>
                 <button
                     className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg transition-all duration-300 
-                              flex items-center justify-center gap-2 font-medium shadow-md hover:shadow-lg"
+                              flex items-center justify-center gap-2 font-medium text-sm shadow-md hover:shadow-lg"
                     onClick={onClearFilters}
                 >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                     Limpiar Filtros

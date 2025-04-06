@@ -7,5 +7,5 @@
 }
 
 .pagingNavigator button {
-    @apply bg-yellow-300 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded mx-2;
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2;
 }

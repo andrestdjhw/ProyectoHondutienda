@@ -10,9 +10,9 @@ export const Header = () => {
         <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6 w-full lg:w-auto">
           <NavLink 
             to="/" 
-            className="text-cyan-600 text-2xl sm:text-3xl font-bold hover:scale-105 transition-transform"
+            className="text-blue-600 text-2xl sm:text-3xl font-bold hover:scale-105 transition-transform"
           >
-            Hondutienda
+            PokeStore
           </NavLink>
 
           <div className="flex bg-gray-100 rounded-full overflow-hidden shadow-sm w-full lg:w-[400px] h-12">
@@ -21,7 +21,7 @@ export const Header = () => {
               placeholder="Buscar productos..."
               className="px-4 py-2 w-full text-gray-700 focus:outline-none placeholder-gray-400 bg-transparent"
             />
-            <button className="bg-cyan-600 hover:bg-cyan-700 px-5 flex items-center justify-center transition-colors">
+            <button className="bg-blue-600 hover:bg-blue-700 px-5 flex items-center justify-center transition-colors">
               <FiSearch className="text-white text-xl" />
             </button>
           </div>
@@ -34,9 +34,9 @@ export const Header = () => {
             className="flex items-center gap-2 group"
           >
             <div className="relative p-2 rounded-full group-hover:bg-gray-100 transition-colors">
-              <FiUser className="text-xl group-hover:text-cyan-600 transition-colors" />
+              <FiUser className="text-xl group-hover:text-blue-600 transition-colors" />
             </div>
-            <span className="hidden sm:inline text-sm font-medium">Mi cuenta</span>
+            <span className="hidden sm:inline text-sm font-medium">Cuenta</span>
           </NavLink>
 
           <NavLink 
@@ -44,7 +44,7 @@ export const Header = () => {
             className="flex items-center gap-2 group"
           >
             <div className="relative p-2 rounded-full group-hover:bg-gray-100 transition-colors">
-              <FiHeart className="text-xl group-hover:text-cyan-600 transition-colors" />
+              <FiHeart className="text-xl group-hover:text-blue-600 transition-colors" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-xs text-white font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 2
               </span>
@@ -57,7 +57,7 @@ export const Header = () => {
             className="flex items-center gap-2 group"
           >
             <div className="relative p-2 rounded-full group-hover:bg-gray-100 transition-colors">
-              <FiShoppingCart className="text-xl group-hover:text-cyan-600 transition-colors" />
+              <FiShoppingCart className="text-xl group-hover:text-blue-600 transition-colors" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-xs text-white font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 3
               </span>
@@ -67,42 +67,48 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Horizontal divider after header top section */}
-      <hr className="border-t border-gray-200 w-full m-0" />
-      
-      {/* Navigation Bar - Redesigned for consistency and no scroll */}
+      {/* Navigation Bar */}
       <div className="w-full flex justify-center bg-white">
-        <nav className="w-full max-w-6xl">
-          <ul className="flex justify-center items-center py-3 px-4 sm:px-6 gap-6 lg:gap-8">
-            {[
-              { to: '/', label: 'Inicio' },
-              { to: '/tienda', label: 'Tienda' },
-              { to: '/about-me', label: 'Acerca de mí' },
-              { to: '/pagos', label: 'Pagos' }
-            ].map(({ to, label }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  className={({ isActive }) =>
-                    `group flex items-center px-2 py-1 text-sm font-medium ${
-                      isActive
-                        ? 'text-cyan-600'
-                        : 'text-gray-700 group-hover:text-cyan-600'
-                    } transition-colors duration-200 relative`
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      {label}
-                      {isActive && (
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-600"></span>
+        <nav className="w-full max-w-6xl flex items-center py-3 px-4 sm:px-6">
+          <div className="flex items-center">
+            <div 
+              className="bg-blue-50 rounded-md px-4 py-1 
+                         group hover:bg-blue-100 hover:shadow-md 
+                         transform hover:scale-[1.02] transition-all duration-300 
+                         animate-fade-in"
+            >
+              <ul className="flex items-center">
+                {[
+                  { to: '/', label: 'Inicio' },
+                  { to: '/tienda', label: 'Tienda' },
+                  { to: '/about-me', label: 'Acerca de mí' },
+                  { to: '/pagos', label: 'Pagos' }
+                ].map(({ to, label }) => (
+                  <li key={to} className="flex items-center">
+                    <NavLink
+                      to={to}
+                      className={({ isActive }) =>
+                        `group flex items-center px-3 py-1 text-sm font-medium ${
+                          isActive
+                            ? 'text-blue-600'
+                            : 'text-gray-700 group-hover:text-blue-600'
+                        } transition-all duration-200 relative transform group-hover:-translate-y-0.5`
+                      }
+                    >
+                      {({ isActive }) => (
+                        <>
+                          {label}
+                          {isActive && (
+                            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600"></span>
+                          )}
+                        </>
                       )}
-                    </>
-                  )}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
