@@ -1,8 +1,7 @@
 header {
-    @apply relative
-    md:flex md:items-center md:justify-between
-    bg-gradient-to-r from-cyan-300 to-cyan-600 text-white;
-}
+    @apply relative md:flex md:items-center md:justify-between;
+  }
+  
 header div {
     @apply ml-10 md:ml-0;
 }

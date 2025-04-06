@@ -6,9 +6,7 @@ import {Footer} from '../components/Footer'
 export const Layout = () => {
     return (
         <>
-            <Header
-                title="Hondutienda"
-            />
+            <Header/>
             <Main>
                 <Outlet />
             </Main>
