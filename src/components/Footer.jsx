@@ -1,41 +1,59 @@
 import React from "react";
+import { FaSquareFacebook } from "react-icons/fa6";
+import { FaSquareTwitter } from "react-icons/fa6";
+import {FaSquareInstagram} from "react-icons/fa6";
 
 export const Footer = () => {
     return (
-        <footer className="bg-gray-800 px-4 md:px-16 lg:px-28">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <footer className="footer-container">
+            <div className="footer-columns">
                 <div>
-                    <h2 className="text-lg text-white font-bold md-4">
+                    <h2 className="footer-title">
                         ¿Quienes somos?
                     </h2>
                     <p className="text-gray-300">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis, minima dolorem!
+                        Somos Hondutienda!
+                        Nuestra tienda nacio en el verano del 2020.
+                        Siempre hemos querido que lo nuestro esta a tu alcance!
                     </p>
                 </div>
                 <div>
-                    <h2 className="text-lg text-white font-bold md-4">
+                    <h2 className="footer-title">
                         Menu
                     </h2>
                     <ul>
-                        <li><a href="#" className="hover:underline text-gray-300">Inicio</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Tienda</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">¿Quienes Somos?</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Carrito</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Pagos</a></li>
+                        <li><a href="#" className="footer-link">Inicio</a></li>
+                        <li><a href="#" className="footer-link">Tienda</a></li>
+                        <li><a href="#" className="footer-link">¿Quienes Somos?</a></li>
+                        <li><a href="#" className="footer-link">Carrito</a></li>
+                        <li><a href="#" className="footer-link">Pagos</a></li>
                     </ul>
                 </div>
                 <div>
-                <h2 className="text-lg text-white font-bold md-4">
+                    <h2 className="footer-title">
                         Categoria Productos
                     </h2>
                     <ul>
-                        <li><a href="#" className="hover:underline text-gray-300">Ropa</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Galletas</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Cereales</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Churros</a></li>
-                        <li><a href="#" className="hover:underline text-gray-300">Bebidas</a></li>
+                        <li><a href="#" className="footer-link">Ropa</a></li>
+                        <li><a href="#" className="footer-link">Galletas</a></li>
+                        <li><a href="#" className="footer-link">Cereales</a></li>
+                        <li><a href="#" className="footer-link">Churros</a></li>
+                        <li><a href="#" className="footer-link">Bebidas</a></li>
                     </ul>
                 </div>
+                <div>
+                    <h2 className="footer-title">
+                        ¡Siquenos en nuestras redes!
+                    </h2>
+                    <ul className="flex space-x-4">
+                        <li><FaSquareFacebook className="footer-social-icon"/><a href="#" className="footer-social-link">Facebook</a></li>
+                        <li><FaSquareTwitter className="footer-social-icon"/><a href="#" className="footer-social-link">Twitter</a></li>
+                        <li><FaSquareInstagram className="footer-social-icon" /><a href="#" className="footer-social-link">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div className="footer-copyright">
+                <p> &copy; 2025, Todos los Derechos Reservados</p>
             </div>
         </footer>
     )
