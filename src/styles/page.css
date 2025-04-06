@@ -1,43 +1,55 @@
-header {
+/* header {
     @apply relative md:flex md:items-center md:justify-between;
-  }
-  
+}
+
 header div {
     @apply ml-10 md:ml-0;
 }
+
 header h1 {
-    @apply text-xl font-medium p-4
-    md:text-2xl
-    ;
+    @apply text-xl font-medium p-4 md:text-2xl;
 }
+
 header nav {
     @apply absolute top-full left-0 w-full min-h-0 h-0 overflow-hidden 
-    md:relative md:w-auto md:min-h-auto md:h-auto md:overflow-visible
-    ;
+           md:relative md:w-full md:min-h-auto md:h-auto md:overflow-visible;
     transition: min-height 0.3s ease-in-out;
 }
+
 header nav.open {
-    @apply absolute top-full left-0 w-full min-h-screen h-auto overflow-hidden bg-gradient-to-r from-cyan-300 to-cyan-600 text-white
-    md:relative md:w-auto md:min-h-auto md:h-auto md:overflow-visible z-40
-    ;
+    @apply absolute top-full left-0 w-full min-h-screen h-auto overflow-hidden 
+           bg-gradient-to-r from-cyan-300 to-cyan-600 text-white
+           md:relative md:w-full md:min-h-auto md:h-auto md:overflow-visible md:bg-transparent z-40;
 }
+
 header nav ul {
-    @apply flex flex-col 
-    md:flex-row md:items-center md:gap-4
-    ;
+    @apply flex flex-col w-full
+           md:flex-row md:items-center md:justify-between;
 }
+
+header nav ul li {
+    @apply flex-1 text-center;
+}
+
 header nav ul li a {
-    @apply block px-4 py-2 border-b-1 cursor-pointer  
-    md:inline-block md:border-none
-    ;
+    @apply block px-4 py-2 border-b-1 cursor-pointer w-full
+           md:inline-block md:border-none md:w-auto;
 }
 
 header .btnHamburger {
-    @apply block absolute top-4 left-0 w-10 h-10
-    flex flex-col gap-1 p-1
-    md:hidden;
+    @apply block absolute top-4 left-0 w-10 h-10 flex flex-col gap-1 p-1 md:hidden;
 }
 
 header .btnHamburger span {
     @apply w-full h-1 bg-white;
 }
+
+@layer components {
+    .header-container {
+      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    
+    .nav-link-responsive {
+      @apply hidden sm:inline text-sm font-medium truncate;
+    }
+  } */
