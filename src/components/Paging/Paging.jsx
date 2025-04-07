@@ -16,6 +16,10 @@ export const Paging = ({
     }
   }, [page, pageInput]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <section className="pagingHolder flex justify-center items-center py-4 px-6 bg-gray-50 rounded-lg shadow-sm">
       {/* Parámetros de paginación (select) */}
@@ -46,6 +50,7 @@ export const Paging = ({
               const newPage = Number(e.target.value);
               if (newPage > 0 && newPage <= totalPages) {
                 onPageChange(newPage);
+                scrollToTop();
               }
             }}
             className="w-12 mx-2 border border-gray-300 rounded-md px-2 py-1 text-center text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
@@ -60,6 +65,7 @@ export const Paging = ({
           onClick={() => {
             if (page > 1) {
               onPageChange(page - 1);
+              scrollToTop();
             }
           }}
           disabled={page === 1}
@@ -75,6 +81,7 @@ export const Paging = ({
           onClick={() => {
             if (page < totalPages) {
               onPageChange(page + 1);
+              scrollToTop();
             }
           }}
           disabled={page === totalPages}
