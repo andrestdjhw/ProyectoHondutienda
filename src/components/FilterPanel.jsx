@@ -13,6 +13,7 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
         priceRange: [0, 100],
         category: "",
         availability: "all",
+        search: "",
     });
 
     const toggleTypeFilter = (type) => {
@@ -39,32 +40,80 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
         setFilters({ ...filters, availability: e.target.value });
     };
 
+    const handleSearchChange = (e) => {
+        setFilters({ ...filters, search: e.target.value });
+    };
+
+    const handleClearFilters = () => {
+        const clearedFilters = {
+            types: {
+                fuego: false,
+                agua: false,
+                planta: false,
+                electrico: false,
+                veneno: false,
+                volador: false,
+            },
+            priceRange: [0, 100],
+            category: "",
+            availability: "all",
+            search: "",
+        };
+        setFilters(clearedFilters);
+        onClearFilters?.(clearedFilters);
+    };
+
     return (
         <aside className="bg-white p-5 rounded-2xl shadow-xl border border-gray-200 w-80 h-fit sticky top-4">
             <h2 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2 border-gray-100">
                 Filtros
             </h2>
-            
-            {/* Filtro por Tipo (más compacto) */}
+
+            {/* 🔍 Filtro por Búsqueda */}
             <div className="mb-4">
                 <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                    </svg>
+                    Buscar
+                </h3>
+                <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+                    <input
+                        type="text"
+                        placeholder="Buscar..."
+                        value={filters.search}
+                        onChange={handleSearchChange}
+                        className="w-full px-2 py-1.5 text-sm outline-none"
+                    />
+                    <button
+                        onClick={() => onApplyFilters(filters)}
+                        className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-3 py-1.5 transition-all"
+                    >
+                        Buscar
+                    </button>
+                </div>
+            </div>
+
+            {/* 🔥 Filtro por Tipo */}
+            <div className="mb-4">
+                <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
                     </svg>
                     Tipo
                 </h3>
                 <div className="grid grid-cols-2 gap-2">
                     {Object.keys(filters.types).map((type) => (
-                        <label 
-                            key={type} 
+                        <label
+                            key={type}
                             className={`flex items-center gap-2 p-1.5 rounded-md transition-all duration-200 cursor-pointer 
                                 ${filters.types[type] ? 'bg-blue-50 border border-blue-200' : 'hover:bg-gray-50'}`}
                         >
-                            <input 
-                                type="checkbox" 
-                                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" 
-                                checked={filters.types[type]} 
-                                onChange={() => toggleTypeFilter(type)} 
+                            <input
+                                type="checkbox"
+                                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                                checked={filters.types[type]}
+                                onChange={() => toggleTypeFilter(type)}
                             />
                             <span className="capitalize text-gray-700 text-sm">{type}</span>
                         </label>
@@ -72,7 +121,7 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 </div>
             </div>
 
-            {/* Filtro por Precio (margen reducido) */}
+            {/* 💰 Rango de Precio */}
             <div className="mb-4">
                 <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,31 +129,29 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                     </svg>
                     Rango de Precio
                 </h3>
-                <div className="px-1">
-                    <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={filters.priceRange[0]}
-                        onChange={(e) => handlePriceChange(e, 0)}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                    />
-                    <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={filters.priceRange[1]}
-                        onChange={(e) => handlePriceChange(e, 1)}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-3"
-                    />
-                    <div className="flex justify-between mt-1 text-sm text-gray-600">
-                        <span>${filters.priceRange[0]}</span>
-                        <span>${filters.priceRange[1]}</span>
-                    </div>
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={filters.priceRange[0]}
+                    onChange={(e) => handlePriceChange(e, 0)}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                />
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={filters.priceRange[1]}
+                    onChange={(e) => handlePriceChange(e, 1)}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-3"
+                />
+                <div className="flex justify-between mt-1 text-sm text-gray-600">
+                    <span>${filters.priceRange[0]}</span>
+                    <span>${filters.priceRange[1]}</span>
                 </div>
             </div>
 
-            {/* Filtro por Categoría (más pequeño) */}
+            {/* 📦 Categoría */}
             <div className="mb-4">
                 <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +172,7 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 </select>
             </div>
 
-            {/* Filtro por Disponibilidad (más compacto) */}
+            {/* ✅ Disponibilidad */}
             <div className="mb-4">
                 <h3 className="text-md font-semibold text-gray-700 mb-2 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +201,7 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 </div>
             </div>
 
-            {/* Botones de Acción (margen reducido) */}
+            {/* Botones */}
             <div className="flex flex-col gap-2">
                 <button
                     className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-all duration-300 
@@ -169,7 +216,7 @@ const FilterPanel = ({ onApplyFilters, onClearFilters }) => {
                 <button
                     className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg transition-all duration-300 
                               flex items-center justify-center gap-2 font-medium text-sm shadow-md hover:shadow-lg"
-                    onClick={onClearFilters}
+                    onClick={handleClearFilters}
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

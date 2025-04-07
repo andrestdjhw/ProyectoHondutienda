@@ -25,7 +25,19 @@ export const DashBoard = () => {
         <section className="container mx-auto p-4 flex gap-6">
             <FilterPanel onApplyFilters={applyFilters} onClearFilters={clearFilters} />
             <div className="flex-1">
-                <h1 className="text-3xl font-bold text-center mb-6">Nuestros Productos</h1>
+            <div className="text-center mb-8">
+  <h1 className="text-4xl font-extrabold">
+    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">
+      ¡Atrápalos Todos!
+    </span>
+  </h1>
+  <p className="text-gray-500 text-lg mt-2">Explora los Pokémon más poderosos del mundo</p>
+</div>
+
+
+
+
+
                 {isLoading && <p className="text-center">Cargando...</p>}
                 {pokemonData?.results?.length > 0 && (
                     <>
