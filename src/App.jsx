@@ -6,7 +6,7 @@ import { DashBoard } from './pages/Dashboard'
 
 import { Layout } from './pages/Layout';
 import { Detail } from './pages/Detail';
-import { Tienda } from './pages/Tienda';
+import { Inicio } from './pages/Inicio';
 import { About } from './pages/About';
 import { Carrito } from './pages/Carrito';
 import { Pagos } from './pages/Pagos';
@@ -16,8 +16,8 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route element={<Layout/>}>
-        <Route path="/" element={<DashBoard/>} />
-        <Route path="/tienda" element={<Tienda/>} />
+        <Route path="/" element={<Inicio/>} />
+        <Route path="/tienda" element={<DashBoard/>} />
         <Route path="/about-me" element={<About/>} />
         <Route path="/carrito" element={<Carrito/>} />
         <Route path="/pagos" element={<Pagos/>} />
